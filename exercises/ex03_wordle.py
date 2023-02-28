@@ -53,7 +53,7 @@ def main() -> None:
         guess = (input_guess(5))
         print(emojified(guess, secret))
         if guess == secret:
-            print(f'You won in {guesses}/6 turns!')
+            print(f'You won in {guesses + 1}/6 turns!')
             return
         else:
             guesses += 1

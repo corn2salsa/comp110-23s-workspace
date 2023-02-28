@@ -1,47 +1,41 @@
-"""One shot wordle"""
-__author__: "730614170"
+"""One shot wordle!"""
+__author__: str = "730614170"
 
-secret: str = "python"
+SECRET: str = "python"
+SECRET_LENGTH: int = len(SECRET)
 playing: bool = True
-guesses: int = 1 
 WHITE_BOX: str = "\U00002B1C"
 GREEN_BOX: str = "\U0001F7E9"
 YELLOW_BOX: str = "\U0001F7E8"
-word: str = input("What is your " + str(len(secret)) + "-letter guess? ")
 idx: int = 0
 emoji: str = ""
-idx_yellow: int = 0
-possible_yellow: bool = False
 
+word: str = input(f'What is your {SECRET_LENGTH}-letter guess? ')
 
-while len(word) != len(secret):
-    word: str = input("That was not " + str(len(secret)) + "-letters! Try agin: ")
-    guesses = guesses + 1
-    
-    if guesses == int(6):
-      print("Not quite. Play again soon! ")
-      exit()
+while len(word) != len(SECRET):
+    wrong_length: str = input(f'That was not {SECRET_LENGTH} letters! Try again: ')
+    word = wrong_length
 
-
-while len(emoji) < len(secret):
-    if word[idx] == secret[idx]:
+while idx < len(SECRET):
+    if word[idx] == SECRET[idx]:
         emoji = emoji + GREEN_BOX
     else:
-        while not possible_yellow and idx_yellow < len(secret):
-            if secret[idx_yellow] == word[idx]:
+        idx_yellow: int = 0
+        possible_yellow: bool = False
+        while not possible_yellow and idx_yellow < SECRET_LENGTH:
+            if SECRET[idx_yellow] == word[idx]:
                 possible_yellow = True
-            idx_yellow = idx_yellow + 1
+            else:
+                idx_yellow = idx_yellow + 1
         if possible_yellow:
             emoji = emoji + YELLOW_BOX
-            possible_yellow = False
         else:
             emoji = emoji + WHITE_BOX
     idx = idx + 1
 
-if word == secret:
-    print(emoji)
-    print("Woo! You got it!") 
+print(emoji)
+
+if word == SECRET:
+    print("Woo! You got it!")
 else: 
-    print(emoji)
     print("Not quite. Play again soon!")
-    exit()
