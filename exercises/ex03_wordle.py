@@ -24,11 +24,12 @@ def emojified(guess: str, secret: str) -> str:
     YELLOW_BOX: str = "\U0001F7E8"
     idx: int = 0
     emoji: str = ""
-    while idx < len(guess):
+    while idx < len(secret):
         if guess[idx] == secret[idx]:
             emoji = emoji + GREEN_BOX
         else:
-            if contains_char(guess,secret[idx]) == True:
+            character: bool = contains_char(secret, guess[idx])
+            if character == True:
                 emoji += YELLOW_BOX
             else:
                 emoji += WHITE_BOX
@@ -46,18 +47,19 @@ def input_guess(integer: int) -> str:
 def main() -> None:
     """The entrypoint of the program and main game loop"""
     secret: str = "codes"
-    guesses: int = 0
-    guess: str = ""
-    while guesses < 6 and secret != guess:
-        print(f'=== Turn {guesses + 1}/6 ===')
-        guess = (input_guess(5))
+    guesses: int = 1
+    winner: bool = False
+    while guesses < 7 and winner == False:
+        print(f'=== Turn {guesses}/6 ===')
+        guess: str = (input_guess(5))
         print(emojified(guess, secret))
         if guess == secret:
-            print(f'You won in {guesses + 1}/6 turns!')
+            print(f'You won in {guesses}/6 turns!')
+            winner = True
             return
         else:
             guesses += 1
-        if guesses == 6:
+        if guesses == 7:
             print(f'X/6 - Sorry, try again tomorrow!')
             return
         
