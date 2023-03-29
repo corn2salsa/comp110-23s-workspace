@@ -158,7 +158,7 @@ def solo_dolo() -> None:
             points = points + 5
             print("Points for bravery!")
             print("but death for stupidity :/ ")
-            print("You are attacked by a swarm of zombies")
+            print("You are attacked by a swarm of zombies.")
             print("You have died.")
             return
         

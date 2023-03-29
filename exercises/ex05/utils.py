@@ -21,7 +21,7 @@ def concat(list1: list[int], list2: list[int]) -> list[int]:
     return new_list
 
 
-def sub(list_og: list[int],idx1: int,idx2: int) -> list[int]:
+def sub(list_og: list[int], idx1: int, idx2: int) -> list[int]:
     """Generate sublist using two given indexes."""
     sub_list: list[int] = []
     LENGTH: int = len(list_og)
@@ -29,7 +29,7 @@ def sub(list_og: list[int],idx1: int,idx2: int) -> list[int]:
         idx2 = LENGTH
     idx2 -= 1
     if idx1 < 0:
-        idx1 * -1
+        idx1 = 0
     if LENGTH == 0 or idx1 >= LENGTH or idx2 <= 0:
         return sub_list
     else:
