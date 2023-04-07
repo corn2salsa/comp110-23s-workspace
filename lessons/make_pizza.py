@@ -1,0 +1,24 @@
+"""Practice implementing class"""
+
+from lessons.pizza import Pizza
+my_pizza: Pizza = Pizza("large", 1, True)
+sals_pizza: Pizza = Pizza("small", 2, False)
+
+def price(pizza_order: Pizza) -> float:
+    """Pizza price"""
+    cost: float = 0.0
+    if pizza_order.size == "large":
+        cost = 6.0
+    else: 
+        cost = 5.0
+    cost += .75 * pizza_order.toppings
+    if pizza_order.gluten_free:
+        cost += 1.0
+    return cost
+
+print(my_pizza.price())
+print(sals_pizza.price())
+print(my_pizza.toppings)
+my_pizza.add_toppings(2)
+print(my_pizza.toppings)
+print(my_pizza.price())
